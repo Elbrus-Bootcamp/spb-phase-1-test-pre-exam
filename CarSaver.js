@@ -2,33 +2,13 @@ const fs = require('fs').promises;
 const { Car } = require('./db/models');
 
 class CarSaver {
-  static async loadDataFromFile(filePath) {
-    const dataString = await fs.readFile(filePath, 'utf8');
-    return dataString;
-  }
+  static async loadDataFromFile(filePath) {}
 
-  static reorganizeData(data) {
-    return data
-      .split('\n')
-      .map((el) => el.split(', '))
-      .map((el) => ({ model: el[0], max_speed: el[1] }));
-  }
+  static reorganizeData(data) {}
 
-  static searchFastCars(data) {
-    return data.filter((car) => car.max_speed >= 250);
-  }
+  static searchFastCars(reorganizedData) {}
 
-  static async writeDataToDB(cars) {
-    try {
-      await Promise.all(
-        cars.map(async (car) => {
-          await Car.create(car);
-        })
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  static async writeDataToDB(cars) {}
 
   static async getCarsDataFromDB() {
     try {
